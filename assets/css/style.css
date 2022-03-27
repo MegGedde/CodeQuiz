@@ -1,0 +1,30 @@
+:root {
+    --primary: #28bfd3;
+    --secondary:#00606e;
+    --black:#000000;
+  }
+
+.header {
+    flex-wrap: wrap;
+    display: flex;
+    width: 100%;
+    align-content: space-between;
+ } 
+#scores {
+    color: var(--primary);
+    width: 50%;
+}
+
+#timer {
+    color: var(--black);
+    text-align: right;
+    width: 50%;
+}
+
+#questions {
+    text-align: center;
+}
+
+.body p {
+    text-align: center;
+}
