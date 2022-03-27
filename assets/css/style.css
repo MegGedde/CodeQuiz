@@ -1,7 +1,11 @@
+* {
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
 :root {
     --primary: #28bfd3;
     --secondary:#00606e;
     --black:#000000;
+    --white: #ffffff;
   }
 
 .header {
@@ -23,8 +27,31 @@
 
 #questions {
     text-align: center;
+    font-size: 2vw;
 }
 
 .body p {
     text-align: center;
+    margin:auto;
+    font-size: 1.5vw;
 }
+
+.btn {
+    background-color: var(--secondary);
+    border-radius: 25px;
+    color: var(--white);
+    display: flex;
+    font-size: 2vw;
+    margin: auto;
+    padding: 14px 34px;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+ .btn:hover {
+    background-color: var(--primary);
+  }
+
+  .hide {
+      display:none;
+  }

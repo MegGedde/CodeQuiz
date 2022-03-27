@@ -10,13 +10,20 @@
 <body>
     <header class="header">
         <p id="scores">View High Scores</p>
-        <p id="timer">Time:</p>
+        <p id="timer">Time: 0</p>
     </header>
     <section class="body">
+        <div id="start">
         <h1 id="questions">Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions within the time limit.</p>
             <p>Keep in mind that incorrect answers will penalize your score/time</p>
             <p>by ten seconds!</p>
+            <button id="generate" class="btn">Start Quiz!</button>
+        </div> 
+        <div id="questions" style = "display : none;">
+            <h2 id="question-title"></h2>
+            <div id="options"></div>
+        </div>   
     </section>
     <script src="./assets/js/script.js"></script>
 </body>
