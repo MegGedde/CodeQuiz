@@ -36,7 +36,7 @@
     font-size: 1.5vw;
 }
 
-.btn {
+.startbtn {
     background-color: var(--secondary);
     border-radius: 25px;
     color: var(--white);
@@ -48,10 +48,20 @@
     margin-top: 30px;
   }
 
- .btn:hover {
-    background-color: var(--primary);
+.btn {
+    background-color: var(--secondary);
+    border-radius: 25px;
+    color: var(--white);
+    display: flex;
+    font-size: 2vw;
+    margin: 0px;
+    padding: 14px 34px;
+    text-align: center;
+    margin-top: 30px;
   }
 
-  .hide {
-      display:none;
+ 
+
+ .btn:hover {
+    background-color: var(--primary);
   }

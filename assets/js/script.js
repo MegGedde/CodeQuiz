@@ -2,6 +2,7 @@ var startBtn = document.querySelector("#generate");
 var timerEl = document.querySelector("#timer");
 var questionTitle = document.querySelector("#question-title");
 var questionOptions = document.querySelector("#options");
+var setNumber = 0;
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
 // WHEN I answer a question
@@ -13,33 +14,19 @@ var questionOptions = document.querySelector("#options");
 // WHEN the game is over
 // THEN I can save my initials and score
 var myQuestions = [
-    {
-      question: "Who invented JavaScript?",
-      answers: {
-        a: "Douglas Crockford",
-        b: "Sheryl Sandberg",
-        c: "Brendan Eich"
-      },
-      correctAnswer: "c"
+  {
+    title: "Commonly Used data types DO NOT include:",
+    choices: ["strings", "alerts", "booleans", "numbers"],
+    answer: "alerts"
+},
+    { 
+      title: "Which one of these is a JavaScript package manager?",
+      choices: ["Node.js", "TypeScript", "npm"],
+      answer: "npm"
     },
-    {
-      question: "Which one of these is a JavaScript package manager?",
-      answers: {
-        a: "Node.js",
-        b: "TypeScript",
-        c: "npm"
-      },
-      correctAnswer: "c"
-    },
-    {
-      question: "Which tool can you use to ensure code quality?",
-      answers: {
-        a: "Angular",
-        b: "jQuery",
-        c: "RequireJS",
-        d: "ESLint"
-      },
-      correctAnswer: "d"
+    { title: "Which tool can you use to ensure code quality?",
+      choices: ["Angular", "jQuery", "RequireJS", "ESLint"],
+      answer: "ESLint"
     }
   ];
 
@@ -49,23 +36,36 @@ var startQuiz = function() {
     start.style.display = "none";
     startTime();
     getQuestion();
-    questions.style.display = "block"
+    document.getElementById("questionTitles").style.display = "block";
       };
 
-var runningQuestion = 0;
-var lastQuestion = myQuestions.length -1;
+// var lastQuestion = myQuestions.length -1;
 
 var getQuestion = function() {
-    for (var i = 0; i < myQuestions.length; i++) {
-        myQuestions[i].question = questionName;
-        myQuestions[i].answers = questionAnswers;
-        myQuestions[i].correctAnswer = questionCorrect;
-      }
-    questionTitle.append(questionName);
-    questionOptions.appendChild(questionAnswers);
+    questionTitle.textContent = "";
+    questionOptions.textContent = "";
+    // for (let i = 0; i < myQuestions.length; i++) {
+      var question = document.createElement("h3");
+      //get current question from array
+      var currentQuestion = myQuestions[setNumber];
+    //update title on site with current question
+      question.textContent = currentQuestion.title;
+      questionTitle.append(question);
+      // }
+      //loop over answer choices
+    currentQuestion.choices.forEach(function(choice, i) {
+      // create new button for each choice
+      var options = document.createElement("button");
+      options.setAttribute("class", "btn");
+      options.setAttribute("value", choice);
+  
+      options.textContent = i + 1 + ". " + choice;
+      questionOptions.append(options);
+      // attach click event listener to each choice
+      options.onclick = questionClick;
+    });
+    
 }
-
-questionAnswers.addEventListener("click", checkAnswer);
 
 var checkAnswer = function() {
     if( answer == questions[runningQuestion].correct)
@@ -105,16 +105,45 @@ var startTime = function() {
         }, 1000);
       }
 
-var gameOver = function() {
-    // clear page contents
-    // edit title and message
-    // create write in box that saves to local storage
-    // save score in write in box?
-    if (timeLeft > 0) {
-        something-.textContent = 'Your score is ' + timeLeft;
-    } else {
-        something -.textContent = 'You do not have a score as you have lost the game.';
-    }
-}      
+// //var gameOver = function() {
+//     // clear page contents
+//     // edit title and message
+//     // create write in box that saves to local storage
+//     // save score in write in box?
+//     if (timeLeft > 0) {
+//         something-.textContent = 'Your score is ' + timeLeft;
+//     } else {
+//         something -.textContent = 'You do not have a score as you have lost the game.';
+//     }
+// }      
 
 startBtn.addEventListener("click", startQuiz);
+// on click, validate if it is correct, then go to next question
+//onclick.gotonextquestion event, re-render html to get question
+//have all answers as an array and the correct answer a common id?
+//event.target.value === questionarray.(if button text equals what we deem as the correct answer)
+// startBtn.addEventListener("click", function() {
+//create HTML elements to hold the data values
+// populateQuestion();
+// });
+
+// var populateQuestion = function() {
+//   questionTitle.textContent = "";
+//   for(let i = 0; i < myQuestions.length; i++) {
+//   var itemData = document.createElement("button");
+//   itemData.textContent = myQuestions[setNumber][i]
+//   //itemData.textContent = myQuestions[0][i]   ???
+//   questionTitle.append(itemData)
+//   //console.log("hi")
+// }
+// setNumber++;
+// };
+
+
+// questionTitle.addEventListener("click", function() {
+//   // delete current content
+
+//   //add new question
+//   populateQuestion();
+// });
+
