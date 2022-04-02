@@ -156,7 +156,7 @@ var save = function () {
     window.localStorage.setItem("highscores", JSON.stringify(highscores));
 
      // redirect to next page
-     window.location.href = "highScores.html";
+     window.location.href = "highscores.html";
 }
 
 startBtn.addEventListener("click", startQuiz);
