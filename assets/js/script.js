@@ -6,7 +6,7 @@ var feedbackAnswer = document.querySelector('#feedback');
 var submitBtn = document.querySelector('.submitbtn');
 var initial = document.querySelector('#initials');
 var setNumber = 0;
-var timeLeft = 6660;
+var timeLeft = 60;
 var timeInterval
 
 var myQuestions = [
@@ -98,7 +98,7 @@ var getQuestion = function() {
 var checkAnswer = function() {
     if(this.value !== myQuestions[setNumber].answer)
     {//display incorrect and subtract time and display incorrect
-      timeLeft -= 15;
+      timeLeft -= 10;
       if (timeLeft < 0) {
         timeLeft = 0
       }
