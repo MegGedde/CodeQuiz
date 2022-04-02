@@ -2,7 +2,9 @@ var startBtn = document.querySelector("#generate");
 var timerEl = document.querySelector("#timer");
 var questionTitle = document.querySelector("#question-title");
 var questionOptions = document.querySelector("#options");
+var feedbackAnswer = document.querySelector('#feedback');
 var setNumber = 0;
+var timeLeft = 60;
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
 // WHEN I answer a question
@@ -62,36 +64,35 @@ var getQuestion = function() {
       options.textContent = i + 1 + ". " + choice;
       questionOptions.append(options);
       // attach click event listener to each choice
-      options.onclick = questionClick;
+      options.onclick = checkAnswer;
     });
     
 }
 
 var checkAnswer = function() {
-    if( answer == questions[runningQuestion].correct)
-    {//go to next question and display correct
-        if (runningQuestion < lastQuestion) {
-            runningQuestion++;
-            getQuestion();
-        } else {
-            gameOver();}
+    if(this.value !== myQuestions[setNumber].answer)
+    {//display incorrect and subtract time and display incorrect
+      timeLeft -= 15;
+      if (timeLeft < 0) {
+        timeLeft = 0
+      }
+      timerEl.textContent = 'Time: ' + timeLeft;
+      feedbackAnswer.textContent = "Incorrect";
     } else {
-        timeLeft - 10;
-        //display incorrect
-        if (timeLeft < 1) {
-            gameOver();
-        } else {
-        if (runningQuestion < lastQuestion) {
-            runningQuestion++;
-            getQuestion();
-        } else {
-            gameOver();
-    }}
-}
+      feedbackAnswer.textContent = "Correct";
+    }
+    setNumber++;
+
+    // move on to next question or end game if last question
+    if (setNumber === myQuestions.length) {
+      gameOver()
+    } else {
+      getQuestion();
+    }
 };
 
 var startTime = function() {
-        var timeLeft = 60;
+        
     
         var timeInterval = setInterval(function () {
           if (timeLeft > 0) {
@@ -105,17 +106,21 @@ var startTime = function() {
         }, 1000);
       }
 
-// //var gameOver = function() {
-//     // clear page contents
-//     // edit title and message
-//     // create write in box that saves to local storage
-//     // save score in write in box?
-//     if (timeLeft > 0) {
-//         something-.textContent = 'Your score is ' + timeLeft;
-//     } else {
-//         something -.textContent = 'You do not have a score as you have lost the game.';
-//     }
-// }      
+var gameOver = function() {
+        // edit title and message
+    // create write in box that saves to local storage
+    // save score in write in box?
+    //clearInterval(timeInterval);
+    // clear page contents
+    questionTitle.textContent = "Your score is" + timeLeft;
+    questionOptions.textContent = "";
+
+    // if (timeLeft > 0) {
+    //     something-.textContent = 'Your score is ' + timeLeft;
+    // } else {
+    //     something -.textContent = 'You do not have a score as you have lost the game.';
+    // }
+}      
 
 startBtn.addEventListener("click", startQuiz);
 // on click, validate if it is correct, then go to next question

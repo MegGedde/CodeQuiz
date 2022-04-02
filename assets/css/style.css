@@ -30,6 +30,11 @@
     font-size: 2vw;
 }
 
+.body {
+margin-left: 15%;
+margin-right: 15%;
+}
+
 .body p {
     text-align: center;
     margin:auto;
@@ -60,8 +65,15 @@
     margin-top: 30px;
   }
 
+  #feedback {
+    font-style: italic;
+    color: var(--black);
+    opacity: 50%;  
+    margin-top: 20px;
+    border-top-style: solid;
+  }
  
 
- .btn:hover {
+ .btn:hover, .startbtn:hover {
     background-color: var(--primary);
   }
